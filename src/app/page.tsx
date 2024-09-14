@@ -1,7 +1,12 @@
 import dynamic from 'next/dynamic'
  
 const WheelOfSongIdeas = dynamic(() => import('./components/wheel-of-song-ideas'), { ssr: false })
- 
+
+interface FooterLinkProps {
+  href: string
+  text: string
+}
+
 const footerLinks = [
   {
     href: "https://enphnt.github.io/",
@@ -9,7 +14,7 @@ const footerLinks = [
   },
 ];
 
-const FooterLink = ({ href, text }: Record<string, any>) => (
+const FooterLink = ({ href, text }: FooterLinkProps) => (
   <a
     className="flex items-center gap-2 hover:underline hover:underline-offset-4"
     href={href}
