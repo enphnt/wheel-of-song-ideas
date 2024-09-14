@@ -28,7 +28,8 @@ const FooterLink = ({ href, text }: FooterLinkProps) => (
 export default function Home() {
   return (
     <div className="grid items-between justify-items-center min-h-screen p-8 gap-16 sm:p-2 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 items-center">
+      <main className="flex flex-col gap-8 items-center overflow-hidden w-full max-w-[calc(100vw-2rem)]
+">
         <WheelOfSongIdeas />
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
