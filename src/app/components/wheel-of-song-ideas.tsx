@@ -61,7 +61,7 @@ const WheelOfSongIdeas = () => {
     <>
       <h1 className="font-bold text-center sm:text-6xl text-blue-500">Wheel of Song Ideas</h1>
       <div className="flex gap-4 items-center flex-col sm:flex-row">
-        <p className="text-3xl p-2 font-bold text-center">{segments.length ? "You should write a song... " : ""}</p>
+        <p className="text-3xl p-2 font-bold text-center">{segments.length ? "Write a song... " : ""}</p>
         {winner && segments.length ?
           <div className="bg-yellow-100 p-2 rounded-lg transform -rotate-[1deg]">
             <span className="text-3xl font-bold text-center rotate-[-1deg] text-green-900">{winner}</span>
