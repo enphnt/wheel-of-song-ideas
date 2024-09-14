@@ -15,3 +15,6 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deploying
+This site uses Github Pages to deploy. To deploy, simply push to the `main` branch. The site will be automatically built and deployed to Github Pages. Refer to the `.github/workflows/nextjs.yml` file for more information. 
