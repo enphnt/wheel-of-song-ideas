@@ -62,10 +62,13 @@ const WheelOfSongIdeas = () => {
       <h1 className="font-bold text-center sm:text-6xl text-blue-500">Wheel of Song Ideas</h1>
       <div className="flex gap-4 items-center flex-col sm:flex-row">
         <p className="text-3xl p-2 font-bold text-center">{segments.length ? "You should write a song... " : ""}</p>
-        {winner && segments.length && 
-        <div className="bg-yellow-100 p-2 rounded-lg transform -rotate-[1deg]">
-          <span className="text-3xl font-bold text-center rotate-[-1deg] text-green-900">{winner}</span>
-        </div>
+        {winner && segments.length ?
+          <div className="bg-yellow-100 p-2 rounded-lg transform -rotate-[1deg]">
+            <span className="text-3xl font-bold text-center rotate-[-1deg] text-green-900">{winner}</span>
+          </div>
+          : <div className="p-2 transform -rotate-[1deg]">
+            <span className="text-3xl font-bold text-center rotate-[-1deg] text-green-900">{" "}</span>
+          </div>
         }
       </div>
       <div className="flex justify-center p-4 m-4i">
@@ -90,37 +93,42 @@ const WheelOfSongIdeas = () => {
           </div>
         )}
       </div>
-      <div className="flex m-4i sm:items-center sm:gap-4 sm:p-2 sm:rounded-lg sm:border sm:border-gray-300 sm:shadow-sm sm:bg-gray-100">
+      <div className="flex m-4i sm:items-start justify-center sm:gap-4 flex-wrap
+       sm:p-2 sm:rounded-lg sm:border sm:border-gray-300 sm:shadow-sm sm:bg-gray-100">
         <h2 className="m-2 sm:text-lg">Add an idea to the wheel:</h2>
-        <input
-          type="text"
-          className="border border-gray-300 mx-2 p-1"
-          value={newIdea}
-          onChange={(e) => setNewIdea(e.target.value)}
-          disabled={isSpinning}
-        />
-        <button
-          className={`bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded transition-colors duration-${ANIMATION_DURATION} ${isSpinning ? 'cursor-not-allowed' : ''}`}
-          onClick={handleAddIdea}
-          disabled={isSpinning}
-        >
-          Add
-        </button>
-        {segments.length > 0 ? 
-        <button
-            className={`bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded mx-2 transition-colors duration-${ANIMATION_DURATION} ${isSpinning ? 'cursor-not-allowed' : ''}`}
-            onClick={handleClearAll}
+        <div className="m-2">
+          <input
+            type="text"
+            className="border border-gray-300 mx-2 p-1"
+            value={newIdea}
+            onChange={(e) => setNewIdea(e.target.value)}
             disabled={isSpinning}
-          >
-            Clear All
-          </button>
-          : <button
-            className="bg-gray-400 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded mx-2"
-            onClick={handleRecallDefaults}
-          >
-            Reset
-          </button>
-        }
+          />
+          <div className="m-2">
+            <button
+              className={`bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded transition-colors duration-${ANIMATION_DURATION} ${isSpinning ? 'cursor-not-allowed' : ''}`}
+              onClick={handleAddIdea}
+              disabled={isSpinning}
+            >
+              Add
+            </button>
+            {segments.length > 0 ?
+              <button
+                className={`bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded mx-2 transition-colors duration-${ANIMATION_DURATION} ${isSpinning ? 'cursor-not-allowed' : ''}`}
+                onClick={handleClearAll}
+                disabled={isSpinning}
+              >
+                Clear All
+              </button>
+              : <button
+                className="bg-gray-400 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded mx-2"
+                onClick={handleRecallDefaults}
+              >
+                Reset
+              </button>
+            }
+          </div>
+        </div>
       </div>
       {segments.length > 0 && (
         <div className="overflow-x-hidden">
@@ -128,15 +136,13 @@ const WheelOfSongIdeas = () => {
             {segments.slice().reverse().map((segment) => (
               <li
                 key={segment.id}
-                className={`flex justify-between items-center p-2 m-1 rounded-lg border border-gray-300 w-[280px] min-h-[5em] max-h-[7em] overflow-hidden transition-transform duration-${ANIMATION_DURATION} ease-in-out transform ${
-                  removingIndex === segment.id ? 'scale-0' : 'scale-100'
-                }`}
+                className={`flex justify-between items-center p-2 m-1 rounded-lg border border-gray-300 w-[280px] min-h-[5em] max-h-[7em] overflow-hidden transition-transform duration-${ANIMATION_DURATION} ease-in-out transform ${removingIndex === segment.id ? 'scale-0' : 'scale-100'
+                  }`}
               >
                 <span className="flex-grow max-w-[200px] overflow-ellipsis overflow-hidden">{segment.text}</span>
                 <button
-                  className={`bg-gray-400 hover:bg-red-400 text-white font-bold py-0 px-2 rounded mx-1 my-1 self-start transition-colors duration-${ANIMATION_DURATION} ${
-                    isSpinning ? 'cursor-not-allowed' : ''
-                  }`}
+                  className={`bg-gray-400 hover:bg-red-400 text-white font-bold py-0 px-2 rounded mx-1 my-1 self-start transition-colors duration-${ANIMATION_DURATION} ${isSpinning ? 'cursor-not-allowed' : ''
+                    }`}
                   onClick={() => handleRemoveIdea(segment.id)}
                   disabled={isSpinning}
                 >

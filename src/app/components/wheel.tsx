@@ -58,8 +58,8 @@ const WheelComponent = ({
   const canvasId = useRef(`canvas-${randomString()}`)
   const wheelId = useRef(`wheel-${randomString()}`)
   const [isFinished, setFinished] = useState(false)
-
-  const size = window && window.innerWidth / 6;
+  
+  const size = window.innerWidth > 768 ? 300 : 150;
   const dimension = (size + 20) * 2
   let currentSegment = ''
   let isStarted = false
@@ -241,7 +241,7 @@ const WheelComponent = ({
     ctx.beginPath()
     ctx.moveTo(centerX + 20, centerY - 50)
     ctx.lineTo(centerX - 20, centerY - 50)
-    ctx.lineTo(centerX, centerY - 110)
+    ctx.lineTo(centerX, centerY - 75)
     ctx.closePath()
     ctx.fill()
     const change = angleCurrent + Math.PI / 2
